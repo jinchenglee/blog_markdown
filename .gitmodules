@@ -1,3 +1,6 @@
 [submodule "vitob-blog/themes/beautifulhugo"]
 	path = vitob-blog/themes/beautifulhugo
 	url = https://github.com/halogenica/beautifulhugo.git
+[submodule "vitob-blog/themes/hugo-ficurinia"]
+	path = vitob-blog/themes/hugo-ficurinia
+	url = https://gitlab.com/gabmus/hugo-ficurinia.git

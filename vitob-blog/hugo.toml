@@ -1,4 +1,4 @@
 baseURL = 'https://jinchenglee.github.io/'
 languageCode = 'en-us'
 title = "Vitob's Blog Site"
-theme = 'beautifulhugo'
+theme = 'hugo-ficurinia'
