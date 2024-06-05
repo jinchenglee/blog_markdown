@@ -1,0 +1,503 @@
+nvidia@tx2j120:~/git_repo/librealsense$ ./scripts/patch-realsense-ubuntu-L4T.sh 
+The script patches and applies in-tree kernel modules required for Librealsense SDK
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+build-essential is already the newest version (12.4ubuntu1).
+build-essential set to manually installed.
+The following packages were automatically installed and are no longer required:
+  apt-clone archdetect-deb bogl-bterm busybox-static cryptsetup-bin dpkg-repack gir1.2-timezonemap-1.0 gir1.2-xkl-1.0
+  grub-common kde-window-manager kinit kio kpackagetool5 kwayland-data kwin-common kwin-data kwin-x11
+  libdebian-installer4 libkdecorations2-5v5 libkdecorations2private5v5 libkf5activities5 libkf5attica5
+  libkf5completion-data libkf5completion5 libkf5declarative-data libkf5declarative5 libkf5doctools5
+  libkf5globalaccel-data libkf5globalaccel5 libkf5globalaccelprivate5 libkf5idletime5 libkf5jobwidgets-data
+  libkf5jobwidgets5 libkf5kcmutils-data libkf5kcmutils5 libkf5kiocore5 libkf5kiontlm5 libkf5kiowidgets5
+  libkf5newstuff-data libkf5newstuff5 libkf5newstuffcore5 libkf5package-data libkf5package5 libkf5plasma5
+  libkf5quickaddons5 libkf5solid5 libkf5solid5-data libkf5sonnet5-data libkf5sonnetcore5 libkf5sonnetui5
+  libkf5textwidgets-data libkf5textwidgets5 libkf5waylandclient5 libkf5waylandserver5 libkf5xmlgui-bin libkf5xmlgui-data
+  libkf5xmlgui5 libkscreenlocker5 libkwin4-effect-builtins1 libkwineffects11 libkwinglutils11 libkwinxrenderutils11
+  libqgsttools-p1 libqt5designer5 libqt5help5 libqt5multimedia5 libqt5multimedia5-plugins libqt5multimediaquick-p5
+  libqt5multimediawidgets5 libqt5opengl5 libqt5positioning5 libqt5printsupport5 libqt5qml5 libqt5quick5
+  libqt5quickwidgets5 libqt5sensors5 libqt5sql5 libqt5test5 libqt5webchannel5 libqt5webkit5 libxcb-composite0
+  libxcb-cursor0 libxcb-damage0 os-prober python3-dbus.mainloop.pyqt5 python3-icu python3-pam python3-pyqt5
+  python3-pyqt5.qtsvg python3-pyqt5.qtwebkit python3-sip qml-module-org-kde-kquickcontrolsaddons qml-module-qtmultimedia
+  qml-module-qtquick2 rdate tasksel tasksel-data
+Use 'sudo apt autoremove' to remove them.
+Suggested packages:
+  git-daemon-run | git-daemon-sysvinit git-doc git-el git-email git-gui gitk gitweb git-cvs git-mediawiki git-svn
+  libssl-doc
+The following NEW packages will be installed:
+  libssl-dev
+The following packages will be upgraded:
+  git libssl1.1
+2 upgraded, 1 newly installed, 0 to remove and 605 not upgraded.
+Need to get 5,438 kB of archives.
+After this operation, 7,413 kB of additional disk space will be used.
+Get:1 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 libssl1.1 arm64 1.1.1-1ubuntu2.1~18.04.23 [1,063 kB]
+Get:2 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 git arm64 1:2.17.1-1ubuntu0.18 [3,008 kB]
+Get:3 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 libssl-dev arm64 1.1.1-1ubuntu2.1~18.04.23 [1,367 kB]
+Fetched 5,438 kB in 2s (3,085 kB/s)  
+debconf: delaying package configuration, since apt-utils is not installed
+(Reading database ... 120395 files and directories currently installed.)
+Preparing to unpack .../libssl1.1_1.1.1-1ubuntu2.1~18.04.23_arm64.deb ...
+Unpacking libssl1.1:arm64 (1.1.1-1ubuntu2.1~18.04.23) over (1.1.1-1ubuntu2.1~18.04.4) ...
+Preparing to unpack .../git_1%3a2.17.1-1ubuntu0.18_arm64.deb ...
+Unpacking git (1:2.17.1-1ubuntu0.18) over (1:2.17.1-1ubuntu0.4) ...
+Selecting previously unselected package libssl-dev:arm64.
+Preparing to unpack .../libssl-dev_1.1.1-1ubuntu2.1~18.04.23_arm64.deb ...
+Unpacking libssl-dev:arm64 (1.1.1-1ubuntu2.1~18.04.23) ...
+Setting up libssl1.1:arm64 (1.1.1-1ubuntu2.1~18.04.23) ...
+Setting up git (1:2.17.1-1ubuntu0.18) ...
+Setting up libssl-dev:arm64 (1.1.1-1ubuntu2.1~18.04.23) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Jetson Board (proc/device-tree/model): quill
+Jetson L4T version: 32.3.1
+Note: the patch makes changes to kernel device tree to support HID IMU sensors
+L4T 32.3.1 to use patches revision 4.4
+Retrieve the corresponding L4T git tag the kernel source tree
+~/git_repo/linux-4.9-source-tree ~/git_repo/librealsense
+Initialized empty Git repository in /home/nvidia/git_repo/linux-4.9-source-tree/.git/
+~/git_repo/librealsense
+~/git_repo/linux-4.9-source-tree ~/git_repo/librealsense
+The matching L4T source tree tag is tegra-l4t-r32.3.1
+~/git_repo/librealsense
+Create the sandbox - NVidia L4T source tree(s)
+Downloading default kernel/kernel-4.9 source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/kernel/kernel-4.9'...
+remote: Enumerating objects: 60760, done.
+remote: Counting objects: 100% (60760/60760), done.
+remote: Compressing objects: 100% (57268/57268), done.
+remote: Total 60760 (delta 5053), reused 27658 (delta 2585), pack-reused 0
+Receiving objects: 100% (60760/60760), 159.68 MiB | 6.54 MiB/s, done.
+Resolving deltas: 100% (5053/5053), done.
+The default kernel/kernel-4.9 source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/kernel/kernel-4.9
+Syncing up with tag tegra-l4t-r32.3.1...
+Checking out files: 100% (57264/57264), done.
+Branch 'mybranch_2024-06-04-1717530803' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530803'
+/home/nvidia/git_repo/librealsense/Tegra/sources/kernel/kernel-4.9 source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default kernel/nvgpu source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/kernel/nvgpu'...
+remote: Enumerating objects: 1018, done.
+remote: Counting objects: 100% (1018/1018), done.
+remote: Compressing objects: 100% (868/868), done.
+remote: Total 1018 (delta 450), reused 324 (delta 136), pack-reused 0
+Receiving objects: 100% (1018/1018), 1.63 MiB | 2.56 MiB/s, done.
+Resolving deltas: 100% (450/450), done.
+The default kernel/nvgpu source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/kernel/nvgpu
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530821' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530821'
+/home/nvidia/git_repo/librealsense/Tegra/sources/kernel/nvgpu source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default kernel/nvidia source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/kernel/nvidia'...
+remote: Enumerating objects: 3494, done.
+remote: Counting objects: 100% (3494/3494), done.
+remote: Compressing objects: 100% (2468/2468), done.
+remote: Total 3494 (delta 1048), reused 2526 (delta 949), pack-reused 0
+Receiving objects: 100% (3494/3494), 9.64 MiB | 8.32 MiB/s, done.
+Resolving deltas: 100% (1048/1048), done.
+The default kernel/nvidia source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/kernel/nvidia
+Syncing up with tag tegra-l4t-r32.3.1...
+Checking out files: 100% (3800/3800), done.
+Branch 'mybranch_2024-06-04-1717530825' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530825'
+/home/nvidia/git_repo/librealsense/Tegra/sources/kernel/nvidia source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/soc/t18x source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/t18x'...
+remote: Enumerating objects: 59, done.
+remote: Counting objects: 100% (59/59), done.
+remote: Compressing objects: 100% (45/45), done.
+remote: Total 59 (delta 15), reused 28 (delta 7), pack-reused 0
+Receiving objects: 100% (59/59), 58.19 KiB | 1.04 MiB/s, done.
+Resolving deltas: 100% (15/15), done.
+The default hardware/nvidia/soc/t18x source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/t18x
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530827' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530827'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/t18x source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/platform/tegra/common source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/tegra/common'...
+remote: Enumerating objects: 42, done.
+remote: Counting objects: 100% (42/42), done.
+remote: Compressing objects: 100% (26/26), done.
+remote: Total 42 (delta 24), reused 23 (delta 15), pack-reused 0
+Receiving objects: 100% (42/42), 50.76 KiB | 1.64 MiB/s, done.
+Resolving deltas: 100% (24/24), done.
+The default hardware/nvidia/platform/tegra/common source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/tegra/common
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530827' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530827'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/tegra/common source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/platform/t18x/common source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t18x/common'...
+remote: Enumerating objects: 81, done.
+remote: Counting objects: 100% (81/81), done.
+remote: Compressing objects: 100% (66/66), done.
+remote: Total 81 (delta 36), reused 29 (delta 14), pack-reused 0
+Receiving objects: 100% (81/81), 84.98 KiB | 1.70 MiB/s, done.
+Resolving deltas: 100% (36/36), done.
+The default hardware/nvidia/platform/t18x/common source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t18x/common
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530828' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530828'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t18x/common source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/platform/t18x/quill source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t18x/quill'...
+remote: Enumerating objects: 43, done.
+remote: Counting objects: 100% (43/43), done.
+remote: Compressing objects: 100% (32/32), done.
+remote: Total 43 (delta 23), reused 23 (delta 10), pack-reused 0
+Receiving objects: 100% (43/43), 25.44 KiB | 813.00 KiB/s, done.
+Resolving deltas: 100% (23/23), done.
+The default hardware/nvidia/platform/t18x/quill source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t18x/quill
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530828' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530828'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t18x/quill source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/soc/t210 source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/t210'...
+remote: Enumerating objects: 30, done.
+remote: Counting objects: 100% (30/30), done.
+remote: Compressing objects: 100% (29/29), done.
+remote: Total 30 (delta 2), reused 12 (delta 0), pack-reused 0
+Receiving objects: 100% (30/30), 48.31 KiB | 1.10 MiB/s, done.
+Resolving deltas: 100% (2/2), done.
+The default hardware/nvidia/soc/t210 source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/t210
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530829' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530829'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/t210 source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/platform/t210/common source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t210/common'...
+remote: Enumerating objects: 32, done.
+remote: Counting objects: 100% (32/32), done.
+remote: Compressing objects: 100% (26/26), done.
+remote: Total 32 (delta 8), reused 16 (delta 5), pack-reused 0
+Receiving objects: 100% (32/32), 20.00 KiB | 930.00 KiB/s, done.
+Resolving deltas: 100% (8/8), done.
+The default hardware/nvidia/platform/t210/common source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t210/common
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530829' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530829'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t210/common source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/platform/t210/jetson source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t210/jetson'...
+remote: Enumerating objects: 66, done.
+remote: Counting objects: 100% (66/66), done.
+remote: Compressing objects: 100% (57/57), done.
+remote: Total 66 (delta 20), reused 25 (delta 8), pack-reused 0
+Receiving objects: 100% (66/66), 118.59 KiB | 1.33 MiB/s, done.
+Resolving deltas: 100% (20/20), done.
+The default hardware/nvidia/platform/t210/jetson source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t210/jetson
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530830' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530830'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t210/jetson source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/platform/t210/porg source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t210/porg'...
+remote: Enumerating objects: 56, done.
+remote: Counting objects: 100% (56/56), done.
+remote: Compressing objects: 100% (44/44), done.
+remote: Total 56 (delta 23), reused 22 (delta 11), pack-reused 0
+Receiving objects: 100% (56/56), 51.12 KiB | 951.00 KiB/s, done.
+Resolving deltas: 100% (23/23), done.
+The default hardware/nvidia/platform/t210/porg source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t210/porg
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530830' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530830'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t210/porg source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/soc/t19x source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/t19x'...
+remote: Enumerating objects: 59, done.
+remote: Counting objects: 100% (59/59), done.
+remote: Compressing objects: 100% (48/48), done.
+remote: Total 59 (delta 7), reused 23 (delta 2), pack-reused 0
+Receiving objects: 100% (59/59), 70.46 KiB | 1.14 MiB/s, done.
+Resolving deltas: 100% (7/7), done.
+The default hardware/nvidia/soc/t19x source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/t19x
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530831' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530831'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/t19x source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/platform/t19x/common source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t19x/common'...
+remote: Enumerating objects: 58, done.
+remote: Counting objects: 100% (58/58), done.
+remote: Compressing objects: 100% (51/51), done.
+remote: Total 58 (delta 21), reused 25 (delta 7), pack-reused 0
+Receiving objects: 100% (58/58), 63.39 KiB | 1.04 MiB/s, done.
+Resolving deltas: 100% (21/21), done.
+The default hardware/nvidia/platform/t19x/common source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t19x/common
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530832' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530832'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t19x/common source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/platform/t19x/galen/kernel-dts source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t19x/galen/kernel-dts'...
+remote: Enumerating objects: 51, done.
+remote: Counting objects: 100% (51/51), done.
+remote: Compressing objects: 100% (41/41), done.
+remote: Total 51 (delta 20), reused 22 (delta 10), pack-reused 0
+Receiving objects: 100% (51/51), 32.50 KiB | 924.00 KiB/s, done.
+Resolving deltas: 100% (20/20), done.
+The default hardware/nvidia/platform/t19x/galen/kernel-dts source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t19x/galen/kernel-dts
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530832' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530832'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t19x/galen/kernel-dts source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+Downloading default hardware/nvidia/platform/t19x/jakku/kernel-dts source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t19x/jakku/kernel-dts'...
+warning: Could not find remote branch tegra-l4t-r32.3.1 to clone.
+fatal: Remote branch tegra-l4t-r32.3.1 not found in upstream origin
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/platform/t19x/jakku/kernel-dts source sync failed!
+
+
+Downloading default hardware/nvidia/soc/tegra source...
+Cloning into '/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/tegra'...
+remote: Enumerating objects: 275, done.
+remote: Counting objects: 100% (275/275), done.
+remote: Compressing objects: 100% (242/242), done.
+remote: Total 275 (delta 25), reused 240 (delta 21), pack-reused 0
+Receiving objects: 100% (275/275), 203.11 KiB | 1.90 MiB/s, done.
+Resolving deltas: 100% (25/25), done.
+The default hardware/nvidia/soc/tegra source is downloaded in: /home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/tegra
+Syncing up with tag tegra-l4t-r32.3.1...
+Branch 'mybranch_2024-06-04-1717530833' set up to track remote ref 'refs/tags/tegra-l4t-r32.3.1'.
+Switched to a new branch 'mybranch_2024-06-04-1717530833'
+/home/nvidia/git_repo/librealsense/Tegra/sources/hardware/nvidia/soc/tegra source sync'ed to tag tegra-l4t-r32.3.1 successfully!
+
+
+./Tegra/sources/kernel/kernel-4.9
+~/git_repo/librealsense/Tegra/sources/kernel/kernel-4.9 ~/git_repo/librealsense
+Copy LibRealSense patches to the sandbox
+Prepare workspace for kernel build
+  HOSTCC  scripts/basic/fixdep
+  SHIPPED scripts/kconfig/zconf.tab.c
+  SHIPPED scripts/kconfig/zconf.hash.c
+  SHIPPED scripts/kconfig/zconf.lex.c
+  HOSTCC  scripts/kconfig/conf.o
+  HOSTCC  scripts/kconfig/zconf.tab.o
+  HOSTLD  scripts/kconfig/conf
+#
+# configuration written to .config
+#
+Update the kernel tree to support HID IMU sensors
+scripts/kconfig/conf  --silentoldconfig Kconfig
+  CHK     include/config/kernel.release
+  WRAP    arch/arm64/include/generated/asm/bugs.h
+  WRAP    arch/arm64/include/generated/asm/clkdev.h
+  WRAP    arch/arm64/include/generated/asm/cputime.h
+  WRAP    arch/arm64/include/generated/asm/delay.h
+  WRAP    arch/arm64/include/generated/asm/dma-contiguous.h
+  WRAP    arch/arm64/include/generated/asm/div64.h
+  WRAP    arch/arm64/include/generated/asm/early_ioremap.h
+  WRAP    arch/arm64/include/generated/asm/emergency-restart.h
+  WRAP    arch/arm64/include/generated/asm/dma.h
+  WRAP    arch/arm64/include/generated/asm/errno.h
+  WRAP    arch/arm64/include/generated/asm/hw_irq.h
+  WRAP    arch/arm64/include/generated/asm/ioctl.h
+  WRAP    arch/arm64/include/generated/asm/ioctls.h
+  WRAP    arch/arm64/include/generated/asm/ipcbuf.h
+  WRAP    arch/arm64/include/generated/asm/irq_regs.h
+  WRAP    arch/arm64/include/generated/asm/kdebug.h
+  WRAP    arch/arm64/include/generated/asm/kmap_types.h
+  WRAP    arch/arm64/include/generated/asm/kvm_para.h
+  WRAP    arch/arm64/include/generated/asm/local.h
+  WRAP    arch/arm64/include/generated/asm/local64.h
+  WRAP    arch/arm64/include/generated/asm/mcs_spinlock.h
+  WRAP    arch/arm64/include/generated/asm/mm-arch-hooks.h
+  WRAP    arch/arm64/include/generated/asm/mman.h
+  WRAP    arch/arm64/include/generated/asm/msgbuf.h
+  WRAP    arch/arm64/include/generated/asm/msi.h
+  WRAP    arch/arm64/include/generated/asm/mutex.h
+  CHK     include/generated/uapi/linux/version.h
+  UPD     include/config/kernel.release
+  WRAP    arch/arm64/include/generated/asm/poll.h
+  UPD     include/generated/uapi/linux/version.h
+  WRAP    arch/arm64/include/generated/asm/resource.h
+  WRAP    arch/arm64/include/generated/asm/rwsem.h
+  WRAP    arch/arm64/include/generated/asm/segment.h
+  WRAP    arch/arm64/include/generated/asm/preempt.h
+  WRAP    arch/arm64/include/generated/asm/sembuf.h
+  WRAP    arch/arm64/include/generated/asm/serial.h
+  WRAP    arch/arm64/include/generated/asm/shmbuf.h
+  WRAP    arch/arm64/include/generated/asm/simd.h
+  WRAP    arch/arm64/include/generated/asm/sizes.h
+  WRAP    arch/arm64/include/generated/asm/sockios.h
+  WRAP    arch/arm64/include/generated/asm/socket.h
+  WRAP    arch/arm64/include/generated/asm/swab.h
+  WRAP    arch/arm64/include/generated/asm/switch_to.h
+  WRAP    arch/arm64/include/generated/asm/termios.h
+  WRAP    arch/arm64/include/generated/asm/trace_clock.h
+  WRAP    arch/arm64/include/generated/asm/unaligned.h
+  WRAP    arch/arm64/include/generated/asm/user.h
+  WRAP    arch/arm64/include/generated/asm/termbits.h
+  WRAP    arch/arm64/include/generated/asm/xor.h
+  WRAP    arch/arm64/include/generated/asm/types.h
+  HOSTCC  scripts/basic/bin2c
+  WRAP    arch/arm64/include/generated/asm/vga.h
+  CHK     include/generated/utsrelease.h
+  WRAP    arch/arm64/include/generated/uapi/asm/kvm_para.h
+  UPD     include/generated/utsrelease.h
+  CC      kernel/bounds.s
+  CHK     include/generated/timeconst.h
+  UPD     include/generated/timeconst.h
+  HOSTCC  scripts/genksyms/genksyms.o
+  HOSTCC  scripts/dtc/dtc.o
+  HOSTCC  scripts/dtc/flattree.o
+  CC      scripts/mod/empty.o
+  HOSTCC  scripts/mod/mk_elfconfig
+  CHK     include/generated/bounds.h
+  UPD     include/generated/bounds.h
+  CC      arch/arm64/kernel/asm-offsets.s
+  CC      scripts/mod/devicetable-offsets.s
+  MKELF   scripts/mod/elfconfig.h
+  CHK     scripts/mod/devicetable-offsets.h
+  UPD     scripts/mod/devicetable-offsets.h
+  HOSTCC  scripts/mod/sumversion.o
+  HOSTCC  scripts/dtc/fstree.o
+  SHIPPED scripts/genksyms/parse.tab.c
+  SHIPPED scripts/genksyms/lex.lex.c
+  SHIPPED scripts/genksyms/keywords.hash.c
+  SHIPPED scripts/genksyms/parse.tab.h
+  HOSTCC  scripts/genksyms/parse.tab.o
+  HOSTCC  scripts/genksyms/lex.lex.o
+  HOSTCC  scripts/mod/modpost.o
+  CHK     include/generated/asm-offsets.h
+  HOSTCC  scripts/dtc/data.o
+  UPD     include/generated/asm-offsets.h
+  CALL    scripts/checksyscalls.sh
+  HOSTCC  scripts/dtc/livetree.o
+  HOSTCC  scripts/dtc/treesource.o
+  HOSTCC  scripts/mod/file2alias.o
+  HOSTCC  scripts/dtc/srcpos.o
+  HOSTLD  scripts/genksyms/genksyms
+  HOSTCC  scripts/dtc/checks.o
+  HOSTCC  scripts/kallsyms
+  HOSTCC  scripts/dtc/util.o
+  SHIPPED scripts/dtc/dtc-lexer.lex.c
+  HOSTCC  scripts/pnmtologo
+  SHIPPED scripts/dtc/dtc-parser.tab.h
+  SHIPPED scripts/dtc/dtc-parser.tab.c
+  HOSTCC  scripts/dtc/dtc-lexer.lex.o
+  HOSTCC  scripts/conmakehash
+  HOSTLD  scripts/mod/modpost
+  LDS     arch/arm64/kernel/vdso/vdso.lds
+  VDSOA   arch/arm64/kernel/vdso/gettimeofday.o
+  HOSTCC  scripts/recordmcount
+  VDSOA   arch/arm64/kernel/vdso/note.o
+  VDSOA   arch/arm64/kernel/vdso/sigreturn.o
+  HOSTCC  scripts/dtc/dtc-parser.tab.o
+  VDSOL   arch/arm64/kernel/vdso/vdso.so.dbg
+  VDSOSYM include/generated/vdso-offsets.h
+  HOSTCC  scripts/sortextable
+  HOSTLD  scripts/dtc/dtc
+HEAD is now at 0a62aeb2 Revert "arm64: config: Enable ZSWAP"
+Apply Librealsense Kernel Patches
+patching file drivers/media/usb/uvc/Makefile
+patching file drivers/media/usb/uvc/uvc_driver.c
+patching file drivers/media/usb/uvc/uvcvideo.h
+patching file drivers/media/v4l2-core/v4l2-ioctl.c
+Hunk #1 succeeded at 1265 (offset 3 lines).
+patching file include/uapi/linux/videodev2.h
+patching file drivers/media/usb/uvc/uvc_driver.c
+patching file drivers/media/usb/uvc/uvc_video.c
+patching file drivers/media/usb/uvc/uvcvideo.h
+patching file drivers/iio/accel/hid-sensor-accel-3d.c
+patching file drivers/iio/gyro/hid-sensor-gyro-3d.c
+patching file include/linux/hid-sensor-ids.h
+patching file drivers/media/usb/uvc/uvc_video.c
+patching file drivers/media/usb/uvc/uvc_ctrl.c
+Compiling uvcvideo kernel module
+  CC [M]  drivers/media/usb/uvc//uvc_queue.o
+  CC [M]  drivers/media/usb/uvc//uvc_v4l2.o
+  CC [M]  drivers/media/usb/uvc//uvc_video.o
+  CC [M]  drivers/media/usb/uvc//uvc_driver.o
+  CC [M]  drivers/media/usb/uvc//uvc_ctrl.o
+  CC [M]  drivers/media/usb/uvc//uvc_status.o
+  CC [M]  drivers/media/usb/uvc//uvc_isight.o
+  CC [M]  drivers/media/usb/uvc//uvc_debugfs.o
+  CC [M]  drivers/media/usb/uvc//uvc_entity.o
+  LD [M]  drivers/media/usb/uvc//uvcvideo.o
+  Building modules, stage 2.
+  MODPOST 1 modules
+  CC      drivers/media/usb/uvc//uvcvideo.mod.o
+  LD [M]  drivers/media/usb/uvc//uvcvideo.ko
+Compiling v4l2-core modules
+  CC [M]  drivers/media/v4l2-core/videobuf-core.o
+  CC [M]  drivers/media/v4l2-core/videobuf-vmalloc.o
+  Building modules, stage 2.
+  MODPOST 2 modules
+  CC      drivers/media/v4l2-core/videobuf-core.mod.o
+  CC      drivers/media/v4l2-core/videobuf-vmalloc.mod.o
+  LD [M]  drivers/media/v4l2-core/videobuf-vmalloc.ko
+  LD [M]  drivers/media/v4l2-core/videobuf-core.ko
+Compiling accelerometer and gyro modules
+  CC [M]  drivers/iio/accel/hid-sensor-accel-3d.o
+  CC [M]  drivers/iio/common/hid-sensors/hid-sensor-attributes.o
+  CC [M]  drivers/iio/common/hid-sensors/hid-sensor-trigger.o
+  CC [M]  drivers/iio/gyro/hid-sensor-gyro-3d.o
+  LD [M]  drivers/iio/common/hid-sensors/hid-sensor-iio-common.o
+  Building modules, stage 2.
+  MODPOST 4 modules
+  CC      drivers/iio/common/hid-sensors/hid-sensor-trigger.mod.o
+  CC      drivers/iio/gyro/hid-sensor-gyro-3d.mod.o
+  CC      drivers/iio/accel/hid-sensor-accel-3d.mod.o
+  CC      drivers/iio/common/hid-sensors/hid-sensor-iio-common.mod.o
+  LD [M]  drivers/iio/common/hid-sensors/hid-sensor-iio-common.ko
+  LD [M]  drivers/iio/common/hid-sensors/hid-sensor-trigger.ko
+  LD [M]  drivers/iio/gyro/hid-sensor-gyro-3d.ko
+  LD [M]  drivers/iio/accel/hid-sensor-accel-3d.ko
+Copying the patched modules to (~/) 
+~/git_repo/librealsense
+Move the modified modules into the modules tree
+Insert the modified kernel modules
+Replacing uvcvideo  -
+Module is resident, unloading ...  succeeded. 
+	Applying the patched module ...  succeeded
+Replacing hid_sensor_accel_3d  -
+	Applying the patched module ...  succeeded
+Replacing hid_sensor_gyro_3d  -
+	Applying the patched module ...  succeeded
+Replacing hid_sensor_trigger  -
+	Applying the patched module ...  succeeded
+Replacing hid_sensor_iio_common  -
+	Module hid_sensor_iio_common  is used by hid_sensor_trigger
+	Unloading dependency hid_sensor_trigger
+	Module is resident, unloading ...  succeeded. 
+	Applying the patched module ...  succeeded	Reloading dependent kernel module hid_sensor_trigger ...  succeeded. 
+
+
+Script has completed. Please consult the installation guide for further instruction.
+
+nvidia@tx2j120:~/git_repo/librealsense$ 
+
