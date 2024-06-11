@@ -6,6 +6,8 @@ draft = false
 
 # RealSense R200 Camera on Jetson TX2 with L4T R32.3.1
 
+{{< toc >}}
+
 Both RealSense R200 camera and NVidia Jetson TX2 are considered legacy hardwares today (when this post is written at June, 2024) and are replaced by their newly released siblings that are more capable and fancier. However, I happen to have both and it is a pitty to have them collect dust on shelf, thus the effort. 
 
 

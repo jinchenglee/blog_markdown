@@ -3,3 +3,9 @@ languageCode = 'en-us'
 title = "Vitob's Blog Site"
 theme = 'hugo-ficurinia'
 imagePreview = 'true'
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 2
+    ordered = true
+    endLevel = 4

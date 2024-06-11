@@ -6,6 +6,8 @@ draft = false
 
 # RealSense R200 on Jetson TX2 with Auvidea J120 carrier board
 
+{{< toc >}}
+
 * Patch Jetpack 4.3 (L4T R32.3.1) with Auvidea [J120 firmware v3.0](https://auvidea.eu/download/firmware/J120/J90-J120-J130_4_3.tar.bz2) according to the README file in the tarball. 
 -- As a side note, I cannot get latest v4.0 firmware to work with Jetpack 4.6, both USB ports on J120 boards are not detecting any devices, even mouse/keyboard, so revert to v3.0 firmware. 
 -- Even with v3.0 firmware, there are some issues to live with: 1) only the top USB port is 3.0, the bottom USB port is only 2.0; 2) the FAN seems not working (cannot be detected by jtop). 

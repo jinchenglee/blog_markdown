@@ -7,6 +7,8 @@ draft = false
 
 #Yocto on TX2 with Jetpack4.3
 
+{{< toc >}}
+
 This blog tries to build TX2 image with industry-default flow for embedded system -- the Yocto project, for ancient Jetson TX2 with Jetpack 4.3 (L4T R32.3.1). 
 
 ## Default meta-tegra build
