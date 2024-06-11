@@ -171,7 +171,7 @@ export TEGRA_TAG=tegra-l4t-r32.3.1
 
 # Install built modules to some directory
 mkdir ~/tx2_source_build/r32-3-1_Release_v1.0/modules_install
-sudo make ARCH=arm64 O=$TEGRA_KERNEL_OUT modules_install INSTALL_MOD_PATH=~/tx2_source_build/r32-3-1_Release_v1.0/modules_install/
+sudo make ARCH=arm64 O=$TEGRA_MODULES_OUT modules_install INSTALL_MOD_PATH=~/tx2_source_build/r32-3-1_Release_v1.0/modules_install/
 ```
 
 

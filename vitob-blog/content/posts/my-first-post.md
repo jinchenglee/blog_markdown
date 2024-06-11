@@ -14,7 +14,7 @@ It records how to add new blog article using markdown.
 2. Create new markdown file.
 ```
 cd blog_markdown/vitob-blog
-hugo new content blog/xxx.md
+hugo new content posts/<dir name>/index.md
 ```
 3. Edit xxx.md
 4. Preview by running '$> hugo server -D'
