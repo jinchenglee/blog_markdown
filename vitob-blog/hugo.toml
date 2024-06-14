@@ -7,5 +7,9 @@ imagePreview = 'true'
 [markup]
   [markup.tableOfContents]
     startLevel = 2
-    ordered = true
+    ordered = false
     endLevel = 4
+
+[params]
+    enableSidebarLayout = true
+    tocInSidebar = true

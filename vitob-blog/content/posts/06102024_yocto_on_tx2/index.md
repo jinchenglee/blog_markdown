@@ -2,12 +2,11 @@
 title = 'Yocto on TX2 with Jetpack4.3'
 date = 2024-06-10T17:08:34-07:00
 draft = false
+toc = true
 +++
 
 
 #Yocto on TX2 with Jetpack4.3
-
-{{< toc >}}
 
 This blog tries to build TX2 image with industry-default flow for embedded system -- the Yocto project, for ancient Jetson TX2 with Jetpack 4.3 (L4T R32.3.1). 
 
