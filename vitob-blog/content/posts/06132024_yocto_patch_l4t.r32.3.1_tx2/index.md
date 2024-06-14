@@ -1,7 +1,7 @@
 +++
 title = 'Yocto kernel patch L4T R32.3.1 on tx2'
 date = 2024-06-13T21:42:50-07:00
-draft = true
+draft = false
 toc = true
 +++
 
